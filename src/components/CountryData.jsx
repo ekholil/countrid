@@ -43,7 +43,7 @@ function CountryData() {
   const handleWeather = (city) => {
     handleOpen();
     fetch(
-      `http://api.weatherstack.com/current?access_key=1383529894a247bc1c20b789fee9fde6&query=${city}`
+      `https://api.weatherstack.com/current?access_key=1383529894a247bc1c20b789fee9fde6&query=${city}`
     )
       .then((res) => res.json())
       .then((data) => {
