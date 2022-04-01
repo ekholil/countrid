@@ -37,13 +37,14 @@ function CountryData() {
       .then((res) => res.json())
       .then((data) => {
         setLoading(false);
+        console.log(data[0])
         setCountryData(data[0]);
       });
   };
   const handleWeather = (city) => {
     handleOpen();
     fetch(
-      `http://api.weatherstack.com/current?access_key=1383529894a247bc1c20b789fee9fde6&query=${city}`
+      `https://api.openweathermap.org/data/2.5/weather?q=${countryData?.capital[0]}&units=metric&appid=9f9c35b9ca552c567277e9ba9fe4977f`
     )
       .then((res) => res.json())
       .then((data) => {
@@ -120,37 +121,35 @@ function CountryData() {
           >
             <Box sx={style}>
               <Typography id="modal-modal-title" variant="h6" component="h2">
-                Weather info of {weatherData?.location?.name}
+                Weather info of {weatherData?.name}, 
               </Typography>
               <Grid container spacing={2}>
                 <Grid item xs={8}>
                   
-                <Typography
-                id="modal-modal-description"
-                varient="h3"
-                sx={{ mt: 2 }}
+                <h1
+                
               >
-                Temperature : {weatherData?.current?.temperature}
-              </Typography>
+                {weatherData?.main?.temp}°c
+              </h1>
 
               <Typography
                 id="modal-modal-description"
                 varient="h3"
                 sx={{ mt: 2 }}
               >
-                Wind Speed : {weatherData?.current?.wind_speed}
+                Wind Speed : {weatherData?.wind?.speed}
               </Typography>
               <Typography
                 id="modal-modal-description"
                 varient="h3"
                 sx={{ mt: 2 }}
               >
-                Precip : {weatherData?.current?.precip}
+                Cloudes : {weatherData?.clouds?.all}
               </Typography>
                   </Grid>
                 <Grid item xs={4}>
                   
-              <img src={weatherData?.current?.weather_icons[0]} alt="" />
+              <img src={`http://openweathermap.org/img/w/${weatherData?.weather[0]?.icon}.png`} alt="" />
                   
                   </Grid>
               </Grid>
