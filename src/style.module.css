@@ -1,0 +1,21 @@
+.card{
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 10px;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-around;
+    width: 50%;
+}
+.span{
+    display: inline-block;
+    margin-bottom: 10px;
+    
+}
+.skeleton{
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 10px;
+    background-color: #fff;
+    width: 50%;
+}
