@@ -71,7 +71,7 @@ function CountryData() {
             id="fullWidth"
           />
           <Button
-            sx={{ marginTop: "10px" }}
+            sx={{ marginTop: "10px", background: '#148f77 ' }}
             type="submit"
             variant="contained"
             disabled={!countryName}
@@ -84,11 +84,11 @@ function CountryData() {
         <div>
           {loading ? (
             <div className={styles.skeleton}>
-              <Skeleton variant="h1" />
-              <Skeleton variant="text" />
-              <Skeleton variant="h1" />
-              <Skeleton variant="text" />
-              <Skeleton variant="h1" />
+             <Skeleton variant="rectangular" width={500} height={50} />
+             <Skeleton variant="h3" />
+             <Skeleton variant="rectangular" width={500} height={100} />
+             <Skeleton variant="h3" />
+             <Skeleton variant="rectangular" width={500} height={50} />
             </div>
           ) : (
             <div className={styles.card}>
@@ -99,7 +99,7 @@ function CountryData() {
                 <h4>
                   Latlng : {countryData?.latlng[0]}, {countryData?.latlng[1]}
                 </h4>
-                <Button sx={{background: 'green', borderRadius:'0px', py:'10px'}} onClick={handleWeather} variant="contained">
+                <Button sx={{background: '#148f77 ', borderRadius:'0px', py:'10px'}} onClick={handleWeather} variant="contained">
                   Capital Weather
                 </Button>
               </div>
