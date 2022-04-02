@@ -39,18 +39,19 @@ function CountryData() {
         setLoading(false);
         console.log(data[0])
         setCountryData(data[0]);
+
       });
   };
-  const handleWeather = (city) => {
+  const handleWeather = () => {
     handleOpen();
     fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${countryData?.capital[0]}&units=metric&appid=9f9c35b9ca552c567277e9ba9fe4977f`
+      `https://api.weatherbit.io/v2.0/current?city=${countryData?.capital[0]}&key=e5c5bfa39f3e4c22bfeab8e553450c3d`
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-        setWeatherData(data);
-        // document.body.innerHTML = JSON.stringify(data);
+        console.log(data.data[0]);
+        setWeatherData(data.data[0])
+      
       });
   };
 
@@ -100,7 +101,7 @@ function CountryData() {
                   Latlng : {countryData?.latlng[0]}, {countryData?.latlng[1]}
                 </h4>
                 <Button
-                  onClick={() => handleWeather(countryData?.capital[0])}
+                  onClick={handleWeather}
                   variant="contained"
                 >
                   Capital Weather
@@ -121,7 +122,7 @@ function CountryData() {
           >
             <Box sx={style}>
               <Typography id="modal-modal-title" variant="h6" component="h2">
-                Weather info of {weatherData?.name}, 
+                Weather info of {weatherData?.city_name}, {countryData?.name?.common}
               </Typography>
               <Grid container spacing={2}>
                 <Grid item xs={8}>
@@ -129,7 +130,7 @@ function CountryData() {
                 <h1
                 
               >
-                {weatherData?.main?.temp}°c
+                {weatherData?.temp}°c
               </h1>
 
               <Typography
@@ -137,19 +138,18 @@ function CountryData() {
                 varient="h3"
                 sx={{ mt: 2 }}
               >
-                Wind Speed : {weatherData?.wind?.speed}
+                Wind Speed : {weatherData?.wind_spd}
               </Typography>
               <Typography
                 id="modal-modal-description"
                 varient="h3"
                 sx={{ mt: 2 }}
               >
-                Cloudes : {weatherData?.clouds?.all}
-              </Typography>
+                Cloudes : {weatherData?.clouds}
+              </Typography> 
                   </Grid>
                 <Grid item xs={4}>
-                  
-              <img src={`http://openweathermap.org/img/w/${weatherData?.weather[0]?.icon}.png`} alt="" />
+                 <img src={`https://www.weatherbit.io/static/img/icons/${weatherData?.weather?.icon}.png`} alt="" />
                   
                   </Grid>
               </Grid>
