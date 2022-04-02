@@ -44,12 +44,12 @@ function CountryData() {
   const handleWeather = () => {
     handleOpen();
     fetch(
-      `https://api.weatherbit.io/v2.0/current?city=${countryData?.capital[0]}&key=e5c5bfa39f3e4c22bfeab8e553450c3d`
+      `http://api.weatherstack.com/current?access_key=1383529894a247bc1c20b789fee9fde6&query=${countryData?.capital[0]}`
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log(data.data[0]);
-        setWeatherData(data.data[0]);
+        console.log(data);
+        setWeatherData(data);
       });
   };
 
@@ -120,31 +120,31 @@ function CountryData() {
           >
             <Box sx={style}>
               <Typography id="modal-modal-title" variant="h6" component="h2">
-                Weather info of {weatherData?.city_name},{" "}
+                Weather info of {weatherData?.location?.name},{" "}
                 {countryData?.name?.common}
               </Typography>
               <Grid container spacing={2}>
                 <Grid item xs={8}>
-                  <h1>{weatherData?.temp}°c</h1>
+                  <h1>{weatherData?.current?.temperature}°c</h1>
 
                   <Typography
                     id="modal-modal-description"
                     varient="h3"
                     sx={{ mt: 2 }}
                   >
-                    Wind Speed : {weatherData?.wind_spd}
+                    Wind Speed : {weatherData?.current?.wind_speed}
                   </Typography>
                   <Typography
                     id="modal-modal-description"
                     varient="h3"
                     sx={{ mt: 2 }}
                   >
-                    Cloudes : {weatherData?.clouds}
+                    Precip : {weatherData?.current?.precip}
                   </Typography>
                 </Grid>
                 <Grid item xs={4}>
                   <img
-                    src={`https://www.weatherbit.io/static/img/icons/${weatherData?.weather?.icon}.png`}
+                    src={weatherData?.current?.weather_icons[0]}
                     alt=""
                   />
                 </Grid>
