@@ -63,6 +63,8 @@ function CountryData() {
           marginTop: "30px",
         }}
       >
+        <h2>Countrid</h2>
+        <p>Type country name and hit enter to see info and flag</p>
         <form onSubmit={handleSubmit}>
           <TextField
             onChange={handleInput}
@@ -99,7 +101,7 @@ function CountryData() {
                 <h4>
                   Latlng : {countryData?.latlng[0]}, {countryData?.latlng[1]}
                 </h4>
-                <Button sx={{background: '#148f77 ', borderRadius:'0px', py:'10px'}} onClick={handleWeather} variant="contained">
+                <Button sx={{background: '#148f77 ',  py:'10px'}} onClick={handleWeather} variant="contained">
                   Capital Weather
                 </Button>
               </div>
