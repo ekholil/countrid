@@ -37,9 +37,8 @@ function CountryData() {
       .then((res) => res.json())
       .then((data) => {
         setLoading(false);
-        console.log(data[0])
+        console.log(data[0]);
         setCountryData(data[0]);
-
       });
   };
   const handleWeather = () => {
@@ -50,13 +49,13 @@ function CountryData() {
       .then((res) => res.json())
       .then((data) => {
         console.log(data.data[0]);
-        setWeatherData(data.data[0])
-      
+        setWeatherData(data.data[0]);
       });
   };
 
   return (
     <Container>
+      <div style={{display: 'grid', placeItems: 'center'}}>
       <Box
         sx={{
           width: 500,
@@ -100,10 +99,7 @@ function CountryData() {
                 <h4>
                   Latlng : {countryData?.latlng[0]}, {countryData?.latlng[1]}
                 </h4>
-                <Button
-                  onClick={handleWeather}
-                  variant="contained"
-                >
+                <Button sx={{background: 'green', borderRadius:'0px', py:'10px'}} onClick={handleWeather} variant="contained">
                   Capital Weather
                 </Button>
               </div>
@@ -122,43 +118,40 @@ function CountryData() {
           >
             <Box sx={style}>
               <Typography id="modal-modal-title" variant="h6" component="h2">
-                Weather info of {weatherData?.city_name}, {countryData?.name?.common}
+                Weather info of {weatherData?.city_name},{" "}
+                {countryData?.name?.common}
               </Typography>
               <Grid container spacing={2}>
                 <Grid item xs={8}>
-                  
-                <h1
-                
-              >
-                {weatherData?.temp}°c
-              </h1>
+                  <h1>{weatherData?.temp}°c</h1>
 
-              <Typography
-                id="modal-modal-description"
-                varient="h3"
-                sx={{ mt: 2 }}
-              >
-                Wind Speed : {weatherData?.wind_spd}
-              </Typography>
-              <Typography
-                id="modal-modal-description"
-                varient="h3"
-                sx={{ mt: 2 }}
-              >
-                Cloudes : {weatherData?.clouds}
-              </Typography> 
-                  </Grid>
+                  <Typography
+                    id="modal-modal-description"
+                    varient="h3"
+                    sx={{ mt: 2 }}
+                  >
+                    Wind Speed : {weatherData?.wind_spd}
+                  </Typography>
+                  <Typography
+                    id="modal-modal-description"
+                    varient="h3"
+                    sx={{ mt: 2 }}
+                  >
+                    Cloudes : {weatherData?.clouds}
+                  </Typography>
+                </Grid>
                 <Grid item xs={4}>
-                 <img src={`https://www.weatherbit.io/static/img/icons/${weatherData?.weather?.icon}.png`} alt="" />
-                  
-                  </Grid>
+                  <img
+                    src={`https://www.weatherbit.io/static/img/icons/${weatherData?.weather?.icon}.png`}
+                    alt=""
+                  />
+                </Grid>
               </Grid>
-
-             
             </Box>
           </Modal>
         </div>
       )}
+      </div>
     </Container>
   );
 }
